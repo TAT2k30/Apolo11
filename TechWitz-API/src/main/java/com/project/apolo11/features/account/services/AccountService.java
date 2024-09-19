@@ -7,8 +7,7 @@ import com.project.apolo11.features.account.domains.entities.Account;
 public interface AccountService {
     Account login(LoginRequest loginRequest);
     Account register(RegisterRequest registerRequest);
-    void logout();
-
+    void logout(String privateAccountToken);
     void changePassword();
     void forgotPassword();
     void resetPassword();
