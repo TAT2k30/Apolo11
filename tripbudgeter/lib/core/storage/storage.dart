@@ -8,7 +8,6 @@ class Storage {
   Storage._internal();
 
   FlutterSecureStorage secureStorage = const FlutterSecureStorage();
-  String username = ''; //username
-  String userId = '';
+  String email = ''; //username
   String avatarUrl = '';
 }
