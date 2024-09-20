@@ -36,7 +36,14 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeRequests()
-                .requestMatchers("api/v1/account/register", "api/v1/account/login").permitAll()
+                .requestMatchers(
+                        "/api/v1/account/register",
+                        "/api/v1/account/login",
+                        "/api/v1/account/get-account-by-id/**",
+                        "/api/v1/account/create-account",
+                        "/api/v1/account/logout",
+                        "api/v1/admin/create-account"
+                ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement(sessionManagement ->

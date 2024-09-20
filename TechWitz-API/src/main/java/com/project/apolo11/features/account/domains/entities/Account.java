@@ -19,14 +19,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @SuperBuilder
 public class Account {
-    private String id;
     private String userName;
     private String password;
     private String avatarUrl;
     private String gender;
     private String phoneNumber;
     private String email;
-    private List<String> roles;
+    private String role;
+//    private List<String> roles;
     private Instant createdAt = Instant.now();
     private Instant updatedAt = Instant.now();
 }

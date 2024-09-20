@@ -1,5 +1,6 @@
 package com.project.apolo11.features.account.utils;
 
+import com.project.apolo11.features.account.domains.entities.Account;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,5 +14,9 @@ public class AccountUtils {
 
     public String getMaleAvatar(){
         return MALE_DEFAULT_URL_AVATAR;
+    }
+
+    public String generateAccountPrivateToken (Account account) {
+        return account.getEmail() + "-" + account.getRole();
     }
 }
