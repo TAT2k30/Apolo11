@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tripbudgeter/features/home/views/homepage.dart';
+import 'package:tripbudgeter/features/home/views/pages/homepage.dart';
 
 final Color discountBackground = appTheme.primaryColor;
 final Color flightColor = appTheme.primaryColor;
