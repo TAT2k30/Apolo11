@@ -8,11 +8,16 @@ import com.google.firebase.cloud.FirestoreClient;
 import com.project.apolo11.common.ResultResponse;
 import com.project.apolo11.features.account.domains.dtos.request.LoginRequest;
 import com.project.apolo11.features.account.domains.dtos.request.RegisterRequest;
+import com.project.apolo11.features.account.domains.dtos.request.UpdateAccountRequest;
+import com.project.apolo11.features.account.domains.dtos.request.UpdateAccountWithMultiplePathFileRequest;
 import com.project.apolo11.features.account.domains.entities.Account;
 import com.project.apolo11.features.account.services.AccountService;
+import com.project.apolo11.features.account.utils.AccountUtils;
+import com.project.apolo11.utils.FileService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -24,11 +29,17 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping("/api/v1/account")
 public class AccountController {
     private final AccountService accountService;
+    private final FileService fileService;
+    private final AccountUtils accountUtils;
 
     public AccountController(
-            AccountService accountService
+            AccountService accountService,
+            AccountUtils accountUtils,
+            FileService fileService
     ) {
         this.accountService = accountService;
+        this.fileService = fileService;
+        this.accountUtils = accountUtils;
     }
 
     @PostMapping("/login")
@@ -160,6 +171,55 @@ public class AccountController {
             );
         }
     }
+
+    @PostMapping("/update-account")
+    public ResponseEntity<ResultResponse<?>> updateAccount(
+            @RequestHeader("Account-Private-Token") String token,
+            @ModelAttribute UpdateAccountRequest updateAccountRequest
+    ) {
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ResultResponse.<Boolean>builder()
+                            .timeStamp(LocalDateTime.now().toString())
+                            .body(false)
+                            .message("Update account failed : Token is missing")
+                            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+        try {
+            String avatarUrl = null;
+            if (updateAccountRequest.getFile() != null && !updateAccountRequest.getFile().isEmpty()) {
+                avatarUrl = fileService.upload(updateAccountRequest.getFile());
+            }
+
+            Account accountUpdated = accountService.updateAccount(
+                    updateAccountRequest,
+                    avatarUrl,
+                    accountUtils.getEmailByToken(token)
+            );
+
+            return ResponseEntity.ok(
+                    ResultResponse.<Account>builder()
+                            .timeStamp(LocalDateTime.now().toString())
+                            .body(accountUpdated)
+                            .message("Account updated successfully.")
+                            .status(HttpStatus.OK)
+                            .statusCode(HttpStatus.OK.value())
+                            .build()
+            );
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ResultResponse.<Boolean>builder()
+                            .timeStamp(LocalDateTime.now().toString())
+                            .body(false)
+                            .message("Update account failed : " + e.getMessage())
+                            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
+
 
     @PostMapping("/logout")
     public ResponseEntity<ResultResponse<?>> logout(

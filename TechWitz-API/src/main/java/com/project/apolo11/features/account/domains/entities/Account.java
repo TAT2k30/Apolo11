@@ -19,6 +19,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @SuperBuilder
 public class Account {
+    private String id;
     private String userName;
     private String password;
     private String avatarUrl;

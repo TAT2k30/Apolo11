@@ -41,8 +41,9 @@ public class SecurityConfig {
                         "/api/v1/account/login",
                         "/api/v1/account/get-account-by-id/**",
                         "/api/v1/account/create-account",
-                        "/api/v1/account/logout",
-                        "api/v1/admin/create-account"
+                        "/api/v1/account/logout",            //Logout account api
+                        "api/v1/admin/create-account",
+                        "api/v1/account/update-account"      //Update Account Api
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()

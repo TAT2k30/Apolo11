@@ -6,6 +6,7 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.project.apolo11.features.account.domains.dtos.request.LoginRequest;
 import com.project.apolo11.features.account.domains.dtos.request.RegisterRequest;
+import com.project.apolo11.features.account.domains.dtos.request.UpdateAccountRequest;
 import com.project.apolo11.features.account.domains.entities.Account;
 import com.project.apolo11.features.account.domains.entities.Token;
 import com.project.apolo11.features.account.services.AccountService;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -25,6 +27,7 @@ public class AccountServiceImpl implements AccountService {
     private final AccountUtils accountUtils;
     private final PasswordUtils passwordUtils;
     private final TokenServiceImpl tokenService;
+
     public AccountServiceImpl(AccountUtils accountUtils, PasswordUtils passwordUtils, TokenServiceImpl tokenService) {
         this.accountUtils = accountUtils;
         this.passwordUtils = passwordUtils;
@@ -67,13 +70,13 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
-
     @Override
     public Account register(RegisterRequest registerRequest) {
         Firestore dbFireStore = FirestoreClient.getFirestore();
 
         // Tạo đối tượng Account mới để lưu
         Account accountSaveToFireBase = new Account();
+        accountSaveToFireBase.setId(UUID.randomUUID().toString());
         accountSaveToFireBase.setUserName(registerRequest.getUserName());
         accountSaveToFireBase.setEmail(registerRequest.getEmail());
         accountSaveToFireBase.setGender(registerRequest.getGender());
@@ -113,21 +116,20 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
-
     @Override
     public void logout(String privateAccountToken) {
         Firestore dbFireStore = FirestoreClient.getFirestore();
-        try{
+        try {
             DocumentReference docRef = dbFireStore.collection("accessToken").document(privateAccountToken);
 
             DocumentSnapshot document = docRef.get().get();
             if (document.exists()) {
-               ApiFuture<WriteResult> collectionApiFuture = docRef.delete();
-               collectionApiFuture.get();
-            }else{
+                ApiFuture<WriteResult> collectionApiFuture = docRef.delete();
+                collectionApiFuture.get();
+            } else {
                 throw new RuntimeException("Invalid token header");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println("Error occurred during account registration: " + e.getMessage());
             throw new RuntimeException("Logout failed" + e.getMessage());
         }
@@ -174,5 +176,31 @@ public class AccountServiceImpl implements AccountService {
             throw new RuntimeException("Failed to retrieve account: " + e.getMessage(), e);
         }
     }
+
+    @Override
+    public Account updateAccount(UpdateAccountRequest updateAccountRequest, String avatarUrl, String email) throws ExecutionException, InterruptedException {
+        Firestore dbFireStore = FirestoreClient.getFirestore();
+
+        // Lấy tài liệu hiện tại từ Firestore theo email
+        DocumentReference docRef = dbFireStore.collection("account").document(email);
+        ApiFuture<DocumentSnapshot> futureDoc = docRef.get();
+        DocumentSnapshot document = futureDoc.get();
+
+        if (document.exists()) {
+            Account accountToUpdate = document.toObject(Account.class);
+            assert accountToUpdate != null;
+            accountToUpdate.setUserName(updateAccountRequest.getUserName());
+            accountToUpdate.setAvatarUrl(avatarUrl);
+            accountToUpdate.setUpdatedAt(Instant.now());
+            accountToUpdate.setGender(updateAccountRequest.getGender());
+            ApiFuture<WriteResult> future = docRef.set(accountToUpdate);
+            future.get();
+
+            return accountToUpdate;
+        } else {
+            throw new IllegalStateException("Tài khoản với email này không tồn tại.");
+        }
+    }
+
 
 }
