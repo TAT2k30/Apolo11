@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tripbudgeter/features/auth/view_models/auth_view_model.dart';
+import 'package:tripbudgeter/common/CodePopUpScreen.dart';
+import 'package:tripbudgeter/features/auth/services/auth_services.dart';
 import 'package:tripbudgeter/features/auth/views/pages/login_page.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -14,51 +13,68 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+  final AuthServices _authServices = AuthServices();
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
+
+  String _errorUsername = '';
   String _errorEmail = '';
   String _errorPassword = '';
   String _errorConfirmPassword = '';
 
+  void _showCodeInputPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => CodeInputPopup(),
+    );
+  }
+
   void _onSubmit() {
     setState(() {
+      _errorUsername =
+          _usernameController.text.isEmpty ? 'Username is required' : '';
       _errorEmail = _emailController.text.isEmpty ? 'Email is required' : '';
       _errorPassword =
           _passwordController.text.isEmpty ? 'Password is required' : '';
       _errorConfirmPassword = _confirmPasswordController.text.isEmpty
           ? 'Confirm Password is required'
-          : '';
+          : (_confirmPasswordController.text != _passwordController.text
+              ? 'Passwords do not match'
+              : '');
     });
 
-    if (_errorEmail.isEmpty &&
+    if (_errorUsername.isEmpty &&
+        _errorEmail.isEmpty &&
         _errorPassword.isEmpty &&
         _errorConfirmPassword.isEmpty) {
-      // Do login
-      Provider.of<AuthViewModel>(context, listen: false).login(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
+      // print('Username: ${_usernameController.text}');
+      // print('Email: ${_emailController.text}');
+      // print('Password: ${_passwordController.text}');
 
-      // Navigate to next screen
-      Navigator.pushNamed(context, '/home');
+      // _showCodeInputPopup(context);
+      try {
+        var result = _authServices.handleRegister(_usernameController.text,
+            _emailController.text, _passwordController.text);
 
-      // Clear form
-      _emailController.clear();
-      _passwordController.clear();
-      _confirmPasswordController.clear();
-
-      // Show success message
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Login success'),
-        ),
-      );
+        if (result != null) {
+          
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Register failed, please try again later')),
+          );
+        }
+      } catch (e) {
+        print("Error register account :  ${e}");
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Login failed'),
+          content: Text('Registration failed'),
         ),
       );
     }
@@ -66,108 +82,88 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            height: MediaQuery.of(context).size.height - 50,
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    const SizedBox(height: 60.0),
-                    const Text(
-                      "Sign up",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "Create your account",
-                      style: TextStyle(fontSize: 15, color: Colors.grey[700]),
-                    )
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(
-                          hintText: "Username",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18),
-                              borderSide: BorderSide.none),
-                          fillColor: Colors.purple.withOpacity(0.1),
-                          filled: true,
-                          prefixIcon: const Icon(Icons.person)),
-                    ),
-                    const SizedBox(height: 20),
-                    TextField(
-                      decoration: InputDecoration(
-                          hintText: "Email",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18),
-                              borderSide: BorderSide.none),
-                          fillColor: Colors.purple.withOpacity(0.1),
-                          filled: true,
-                          prefixIcon: const Icon(Icons.email)),
-                    ),
-                    const SizedBox(height: 20),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "Password",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none),
-                        fillColor: Colors.purple.withOpacity(0.1),
-                        filled: true,
-                        prefixIcon: const Icon(Icons.password),
-                      ),
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: 20),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "Confirm Password",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none),
-                        fillColor: Colors.purple.withOpacity(0.1),
-                        filled: true,
-                        prefixIcon: const Icon(Icons.password),
-                      ),
-                      obscureText: true,
-                    ),
-                  ],
-                ),
-                Container(
-                    padding: const EdgeInsets.only(top: 3, left: 3),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Text(
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.purple.withOpacity(0.8),
+                  Colors.blue.withOpacity(0.8),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
+          SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 80),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Column(
+                    children: const <Widget>[
+                      Text(
                         "Sign up",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                        shape: const StadiumBorder(),
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        backgroundColor: Colors.purple,
+                      SizedBox(height: 20),
+                      Text(
+                        "Create your account",
+                        style: TextStyle(fontSize: 15, color: Colors.white70),
                       ),
-                    )),
-                const Center(child: Text("Or")),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Text("Already have an account?"),
-                    TextButton(
+                      SizedBox(height: 60),
+                    ],
+                  ),
+                  _buildInputField("Username", Icons.person, false,
+                      _usernameController, _errorUsername),
+                  const SizedBox(height: 20),
+                  _buildInputField("Email", Icons.email, false,
+                      _emailController, _errorEmail),
+                  const SizedBox(height: 20),
+                  _buildInputField("Password", Icons.lock, true,
+                      _passwordController, _errorPassword),
+                  const SizedBox(height: 20),
+                  _buildInputField("Confirm Password", Icons.lock, true,
+                      _confirmPasswordController, _errorConfirmPassword,
+                      isConfirmPassword: true),
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: _onSubmit,
+                    style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      backgroundColor: Colors.purple,
+                      elevation: 5, // Add shadow
+                    ),
+                    child: const Text(
+                      "Register",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Center(
+                    child: Text(
+                      "Or",
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text(
+                        "Already have an account?",
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                      TextButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
@@ -177,15 +173,73 @@ class _RegisterPageState extends State<RegisterPage> {
                         },
                         child: const Text(
                           "Login",
-                          style: TextStyle(color: Colors.purple),
-                        ))
-                  ],
-                )
-              ],
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
+    );
+  }
+
+  Widget _buildInputField(String hintText, IconData icon, bool isPassword,
+      TextEditingController controller, String errorText,
+      {bool isConfirmPassword = false}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextField(
+          controller: controller,
+          obscureText: isPassword && !isConfirmPassword
+              ? !_isPasswordVisible
+              : isConfirmPassword
+                  ? !_isConfirmPasswordVisible
+                  : false,
+          decoration: InputDecoration(
+            hintText: hintText,
+            filled: true,
+            fillColor: Colors.white.withOpacity(0.2),
+            prefixIcon: Icon(icon, color: Colors.white),
+            hintStyle: const TextStyle(color: Colors.white70),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide: BorderSide.none,
+            ),
+            contentPadding: const EdgeInsets.all(20),
+            errorText: errorText.isNotEmpty ? errorText : null,
+            suffixIcon: isPassword || isConfirmPassword
+                ? IconButton(
+                    icon: Icon(
+                      isConfirmPassword
+                          ? (_isConfirmPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off)
+                          : (_isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                      color: Colors.white70,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        if (isConfirmPassword) {
+                          _isConfirmPasswordVisible =
+                              !_isConfirmPasswordVisible;
+                        } else {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        }
+                      });
+                    },
+                  )
+                : null,
+          ),
+          style: const TextStyle(color: Colors.white),
+        ),
+      ],
     );
   }
 }

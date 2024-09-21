@@ -1,31 +1,39 @@
 class AccountModel {
+  final String id;
   final String username;
   final String email;
-  final String password;
-  late String? avatarUrl;
+  final String avatarUrl;
+  final String gender;
+  final String role;
 
   AccountModel({
+    required this.id,
     required this.username,
     required this.email,
-    required this.password,
-    this.avatarUrl,
+    required this.avatarUrl,
+    required this.gender,
+    required this.role,
   });
 
   factory AccountModel.fromMap(Map<String, dynamic> map) {
     return AccountModel(
-      username: map['username'],
+      id: map['id'], 
+      username: map['userName'], 
       email: map['email'],
-      password: map['password'],
       avatarUrl: map['avatarUrl'],
+      gender: map['gender'], 
+      role: map['role'], 
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'username': username,
+      'id': id, 
+      'userName': username,
       'email': email,
-      'password': password,
       'avatarUrl': avatarUrl,
+      'gender': gender, 
+      'role': role, 
     };
   }
 }

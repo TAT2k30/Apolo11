@@ -141,7 +141,6 @@ public class AccountController {
         data.put("password", account.getPassword());
         data.put("avatarUrl", account.getAvatarUrl());
         data.put("gender", account.getGender());
-        data.put("phoneNumber", account.getPhoneNumber());
         data.put("email", account.getEmail());
         data.put("createdAt", account.getCreatedAt());
         data.put("updatedAt", account.getUpdatedAt());
@@ -258,6 +257,19 @@ public class AccountController {
                                 .build());
             }
         }
+    }
+
+    @GetMapping("/get-all-account")
+    public ResponseEntity<ResultResponse<?>> getAllAccount(){
+        return ResponseEntity.ok(
+                ResultResponse.<Boolean>builder()
+                        .timeStamp(LocalDateTime.now().toString())
+                        .body(true)
+                        .message("get all account ok")
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .build()
+        );
     }
 }
 

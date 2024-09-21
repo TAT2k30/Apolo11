@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tripbudgeter/config/routes/routes.dart';
 import 'package:tripbudgeter/features/about/view/about.dart';
 import 'package:tripbudgeter/features/auth/view_models/auth_view_model.dart';
 import 'package:tripbudgeter/features/auth/views/pages/login_page.dart';
+import 'package:tripbudgeter/features/expenses/models/expense_model.dart';
 import 'package:tripbudgeter/features/expenses/view_models/expense_view_model.dart';
+import 'package:tripbudgeter/features/home/views/pages/SecondPage.dart';
+import 'package:tripbudgeter/features/home/views/pages/gallerypage.dart';
+import 'package:tripbudgeter/features/home/views/pages/homepage.dart';
 import 'package:tripbudgeter/features/trips/views/pages/trip_detail.dart';
 
 import 'features/reports/view_models/report_view_model.dart';
@@ -32,7 +37,8 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: TripDetails(trip: TripData.myTrip),
+        home: LoginPage(),
+        onGenerateRoute: RouteManager.generateRoute, 
       ),
     );
   }

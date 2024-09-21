@@ -19,7 +19,7 @@ class AuthViewModel extends ChangeNotifier {
   }
 
   Future<void> logout() async {
-    _accountModel = AccountModel(username: '', email: '', password: '');
+    // _accountModel = AccountModel(username: '', email: '', password: '');
     notifyListeners();
   }
 

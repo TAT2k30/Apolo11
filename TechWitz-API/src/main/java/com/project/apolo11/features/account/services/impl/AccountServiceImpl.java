@@ -79,15 +79,12 @@ public class AccountServiceImpl implements AccountService {
         accountSaveToFireBase.setId(UUID.randomUUID().toString());
         accountSaveToFireBase.setUserName(registerRequest.getUserName());
         accountSaveToFireBase.setEmail(registerRequest.getEmail());
-        accountSaveToFireBase.setGender(registerRequest.getGender());
-        accountSaveToFireBase.setPhoneNumber(registerRequest.getPhoneNumber());
+        accountSaveToFireBase.setGender("Male");
         accountSaveToFireBase.setPassword(passwordUtils.encodePassword(registerRequest.getPassword()));
         accountSaveToFireBase.setRole("USER");
 
         String avatarUrl = accountUtils.getMaleAvatar();
-        if ("female".equalsIgnoreCase(registerRequest.getGender())) {
-            avatarUrl = accountUtils.getFemaleAvatar();
-        }
+
         accountSaveToFireBase.setAvatarUrl(avatarUrl);
 
         accountSaveToFireBase.setCreatedAt(Instant.now());

@@ -24,7 +24,6 @@ public class Account {
     private String password;
     private String avatarUrl;
     private String gender;
-    private String phoneNumber;
     private String email;
     private String role;
 //    private List<String> roles;

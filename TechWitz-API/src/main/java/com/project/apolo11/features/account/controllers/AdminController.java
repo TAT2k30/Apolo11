@@ -31,7 +31,6 @@ public class AdminController {
             account.setPassword(createAccountRequest.getPassword());
             account.setAvatarUrl(createAccountRequest.getAvatarUrl());
             account.setGender(createAccountRequest.getGender());
-            account.setPhoneNumber(createAccountRequest.getPhoneNumber());
             account.setEmail(createAccountRequest.getEmail());
 
 
