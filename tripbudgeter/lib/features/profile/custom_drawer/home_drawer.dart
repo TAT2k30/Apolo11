@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tripbudgeter/common/app_theme.dart';
+import 'package:tripbudgeter/core/storage/storage.dart';
+import 'package:tripbudgeter/features/auth/services/auth_services.dart';
 import 'package:tripbudgeter/features/auth/views/pages/login_page.dart';
 
 class HomeDrawer extends StatefulWidget {
@@ -35,7 +37,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
     const FlutterSecureStorage secureStorage = FlutterSecureStorage();
     String? name = await secureStorage.read(key: 'userName');
     String? avatar = await secureStorage.read(key: 'avatarUrl');
-
     setState(() {
       userName = name ?? 'User';
       avatarUrl = avatar ?? '';
@@ -75,7 +76,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
     bool isLightMode = brightness == Brightness.light;
     return Scaffold(
         backgroundColor:
-            const Color.fromARGB(255, 63, 81, 181).withOpacity(0.9), // Màu nền
+            const Color.fromARGB(255, 63, 81, 181).withOpacity(0.9),
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -164,9 +165,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 ),
               ),
               const SizedBox(height: 4),
-              Divider(
-                  height: 1,
-                  color: Colors.white.withOpacity(0.6)), // Đường kẻ trắng
+              Divider(height: 1, color: Colors.white.withOpacity(0.6)),
               Expanded(
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
@@ -177,18 +176,16 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   },
                 ),
               ),
-              Divider(
-                  height: 1,
-                  color: Colors.white.withOpacity(0.6)), // Đường kẻ trắng
+              Divider(height: 1, color: Colors.white.withOpacity(0.6)),
               Column(
                 children: <Widget>[
                   ListTile(
-                    title: Text(
+                    title: const Text(
                       'Sign Out',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
-                        color: Colors.red,
+                        color: Colors.white,
                       ),
                       textAlign: TextAlign.left,
                     ),
@@ -206,11 +203,25 @@ class _HomeDrawerState extends State<HomeDrawer> {
   }
 
   void onTapped() {
+    AuthServices authServices = AuthServices();
+    authServices.handleLogout();
+
+    navigateToLogin(context);
+  }
+
+  void navigateToLogin(BuildContext context) async {
+    const FlutterSecureStorage secureStorage = FlutterSecureStorage();
+    String? currentRoute = ModalRoute.of(context)?.settings.name;
+    if (currentRoute != null) {
+      await secureStorage.write(key: 'lastRoute', value: currentRoute);
+    }
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
   Widget inkwell(DrawerList listData) {
+    bool isSelected = widget.screenIndex == listData.index;
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -223,17 +234,29 @@ class _HomeDrawerState extends State<HomeDrawer> {
           children: <Widget>[
             Container(
               padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+              decoration: isSelected
+                  ? BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(30.0),
+                        bottomLeft: Radius.circular(30.0),
+                      ),
+                    )
+                  : null,
               child: Row(
                 children: <Widget>[
                   const Padding(padding: EdgeInsets.all(4.0)),
-                  Icon(listData.icon?.icon, color: Colors.white), // Màu icon
+                  Icon(
+                    listData.icon?.icon,
+                    color: isSelected ? Colors.white : Colors.grey.shade300,
+                  ),
                   const Padding(padding: EdgeInsets.all(4.0)),
                   Text(
                     listData.labelName,
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 16,
-                      color: Colors.white, // Màu chữ
+                      color: isSelected ? Colors.white : Colors.grey.shade300,
                     ),
                     textAlign: TextAlign.left,
                   ),

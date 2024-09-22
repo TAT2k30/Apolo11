@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tripbudgeter/common/CodePopUpScreen.dart';
 import 'package:tripbudgeter/features/auth/services/auth_services.dart';
 import 'package:tripbudgeter/features/auth/views/pages/login_page.dart';
+import 'package:tripbudgeter/features/profile/custom_drawer/drawer_user_controller.dart';
+import 'package:tripbudgeter/features/profile/custom_drawer/home_drawer.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -62,12 +64,16 @@ class _RegisterPageState extends State<RegisterPage> {
             _emailController.text, _passwordController.text);
 
         if (result != null) {
-          
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Register failed, please try again later')),
           );
         }
+        _authServices.handleLogin(
+            _emailController.text, _passwordController.text);
+
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DrawerUserController()));
       } catch (e) {
         print("Error register account :  ${e}");
       }

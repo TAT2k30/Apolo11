@@ -29,5 +29,7 @@ class Storage {
     return {'email': email, 'avatarUrl': avatarUrl, 'accountId': accountId};
   }
 
-  
+  Future<void> deleteAllData() async {
+    secureStorage.deleteAll();
+  }
 }

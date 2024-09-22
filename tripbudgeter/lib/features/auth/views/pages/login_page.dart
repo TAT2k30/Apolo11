@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:tripbudgeter/features/auth/services/auth_services.dart';
 import 'package:tripbudgeter/features/auth/view_models/auth_view_model.dart';
@@ -22,8 +23,9 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
   String _errorEmail = '';
   String _errorPassword = '';
+  bool _isPasswordVisible = true;
 
-  void _onSubmit() {
+  void _onSubmit() async {
     setState(() {
       _errorEmail = _emailController.text.isEmpty ? 'Email is required' : '';
       _errorPassword =
@@ -31,20 +33,38 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     if (_errorEmail.isEmpty && _errorPassword.isEmpty) {
-      Provider.of<AuthViewModel>(context, listen: false).login(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
+      try {
+        // Gọi hàm login từ AuthViewModel
+        await Provider.of<AuthViewModel>(context, listen: false).login(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+        // Đăng nhập thành công
+        const FlutterSecureStorage secureStorage = FlutterSecureStorage();
+        String? lastRoute = await secureStorage.read(key: 'lastRoute');
+        // Xóa thông tin đăng nhập cũ
+        _emailController.clear();
+        _passwordController.clear();
 
-      Navigator.pushNamed(context, '/home');
-      _emailController.clear();
-      _passwordController.clear();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Login success'),
+          ),
+        );
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Login success'),
-        ),
-      );
+        if (lastRoute != null && lastRoute.isNotEmpty) {
+          Navigator.pushNamed(context, lastRoute);
+          await secureStorage.delete(key: 'lastRoute');
+        } else {
+          Navigator.pushNamed(context, '/home');
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Login failed'),
+          ),
+        );
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -66,8 +86,8 @@ class _LoginPageState extends State<LoginPage> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Colors.purple.withOpacity(0.8),
-                    Colors.blue.withOpacity(0.8),
+                    Colors.purple.withOpacity(0.9),
+                    Colors.blue.withOpacity(0.9),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -79,22 +99,18 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const SizedBox(height: 30),
                   _header(context),
                   const SizedBox(height: 30),
                   _inputField(context),
                   const SizedBox(height: 20),
                   _forgotPassword(context),
-                  const SizedBox(height: 20),
                   _signup(context),
-                  const SizedBox(height: 20),
-                  const SizedBox(height: 20),
-                  const SizedBox(height: 20),
                   _socialButton(
                     context,
                     'assets/images/gmail.png',
                     'Continue with Google',
                     () {
-                      // await _authServices.testConnection();
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (context) => DrawerUserController(),
@@ -150,6 +166,8 @@ class _LoginPageState extends State<LoginPage> {
         const SizedBox(height: 10),
         TextField(
           controller: _passwordController,
+          obscureText:
+              !_isPasswordVisible, // Ẩn mật khẩu nếu _isPasswordVisible là false
           decoration: InputDecoration(
             hintText: "Password",
             border: OutlineInputBorder(
@@ -161,8 +179,19 @@ class _LoginPageState extends State<LoginPage> {
             prefixIcon: const Icon(Icons.lock),
             errorText: _errorPassword.isEmpty ? null : _errorPassword,
             errorStyle: const TextStyle(color: Colors.red),
+            // Thêm biểu tượng con mắt để ẩn/hiện mật khẩu
+            suffixIcon: IconButton(
+              icon: Icon(
+                _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+              ),
+              onPressed: () {
+                setState(() {
+                  _isPasswordVisible =
+                      !_isPasswordVisible; // Đảo ngược trạng thái
+                });
+              },
+            ),
           ),
-          obscureText: true,
         ),
         const SizedBox(height: 10),
         ElevatedButton(
@@ -245,7 +274,7 @@ class _LoginPageState extends State<LoginPage> {
             text,
             style: TextStyle(
               fontSize: 16,
-              color: textColor, // Màu của văn bản có thể điều chỉnh
+              color: textColor,
             ),
           ),
         ],

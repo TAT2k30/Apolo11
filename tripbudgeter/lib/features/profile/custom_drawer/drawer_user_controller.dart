@@ -3,6 +3,7 @@ import 'package:tripbudgeter/common/app_theme.dart';
 import 'package:tripbudgeter/config/routes/routes.dart';
 import 'package:tripbudgeter/features/home/views/pages/homepage.dart';
 import 'package:tripbudgeter/features/profile/custom_drawer/home_drawer.dart';
+import 'package:tripbudgeter/features/trips/views/pages/add_trips.dart';
 
 class DrawerUserController extends StatefulWidget {
   DrawerUserController({
@@ -52,6 +53,9 @@ class _DrawerUserControllerState extends State<DrawerUserController>
     scrollController!.addListener(() {
       _handleScrollListener();
     });
+    // Thiết lập màn hình mặc định là Home khi khởi tạo
+    widget.screenIndex ??= DrawerIndex.HOME;
+    widget.screenView = HomeScreen();
     WidgetsBinding.instance.addPostFrameCallback((_) => getInitState());
   }
 
@@ -158,9 +162,6 @@ class _DrawerUserControllerState extends State<DrawerUserController>
                             child: InkWell(
                               borderRadius: BorderRadius.circular(
                                   AppBar().preferredSize.height),
-                              child: Center(
-                                child: _buildMenuView(),
-                              ),
                               onTap: () {
                                 FocusScope.of(context).unfocus();
                                 onDrawerClick(DrawerIndex.PLANNING);
@@ -178,23 +179,6 @@ class _DrawerUserControllerState extends State<DrawerUserController>
         ),
       ),
     );
-  }
-
-  Widget _buildMenuView() {
-    switch (widget.screenIndex) {
-      case DrawerIndex.HOME:
-        return Text("Home Screen View");
-      case DrawerIndex.PLANNING:
-        return Text("Planning Screen View");
-      case DrawerIndex.About:
-        return Text("About Screen View");
-      default:
-        return AnimatedIcon(
-          color: AppTheme.white,
-          icon: widget.animatedIconData ?? AnimatedIcons.arrow_menu,
-          progress: iconAnimationController!,
-        );
-    }
   }
 
   void onDrawerClick(DrawerIndex indexType) {
@@ -215,14 +199,12 @@ class _DrawerUserControllerState extends State<DrawerUserController>
   void _updateScreen(DrawerIndex indexType) {
     setState(() {
       widget.screenIndex = indexType;
-
-      // Update screenView based on indexType
       switch (indexType) {
         case DrawerIndex.HOME:
-          widget.screenView = HomeScreen(); // Actual screen for Home
+          widget.screenView = HomeScreen();
           break;
         case DrawerIndex.PLANNING:
-          // widget.screenView = PlanningScreen(); // Uncomment and implement
+          widget.screenView = TripStepper();
           break;
         case DrawerIndex.About:
           // widget.screenView = AboutScreen(); // Uncomment and implement

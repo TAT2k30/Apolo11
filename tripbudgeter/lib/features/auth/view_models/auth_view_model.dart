@@ -5,22 +5,36 @@ import 'package:tripbudgeter/features/auth/services/auth_services.dart';
 
 class AuthViewModel extends ChangeNotifier {
   final AuthServices _authServices = AuthServices();
-  late AccountModel _accountModel;
+  AccountModel? _accountModel; // Make this nullable
 
-  Future<bool> login({required String email, required String password}) async {
+  Future<AccountModel?> login({
+    required String email,
+    required String password,
+  }) async {
     try {
       _accountModel = await _authServices.handleLogin(email, password);
-      _saveCurrentUser(_accountModel.email);
+      if (_accountModel != null) {
+        await _saveCurrentUser(_accountModel!.email); // Use null safety
+      }
       notifyListeners();
-      return true;
+      return _accountModel; // Return the AccountModel or null
     } catch (e) {
-      return false;
+      // Optionally, log the error for debugging
+      print('Login failed: $e');
+      return null; // Return null on failure
     }
   }
 
   Future<void> logout() async {
-    // _accountModel = AccountModel(username: '', email: '', password: '');
-    notifyListeners();
+    try {
+      await _authServices.handleLogout();
+      _accountModel = null;
+      await Storage().secureStorage.delete(key: 'userId');
+      notifyListeners();
+    } catch (e) {
+      // Handle logout errors if needed
+      print('Logout failed: $e');
+    }
   }
 
   Future<void> _saveCurrentUser(String email) async {

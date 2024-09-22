@@ -1,19 +1,16 @@
 import 'dart:convert';
-import 'dart:math';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
 import 'package:tripbudgeter/core/network/api_urls.dart';
 import 'package:tripbudgeter/core/storage/storage.dart';
 import 'package:tripbudgeter/features/auth/models/account_model.dart';
-import 'package:http/http.dart' as http;
 
 const accountUri = '${ApiUrls.API_BASE_URL}/account';
 
 class AuthServices {
   Future<ResultResponse<bool>> testConnection() async {
     try {
-      http.Response res = await http.get(
-        Uri.parse('$accountUri/get-all-account'),
-      );
+      final res = await http.get(Uri.parse('$accountUri/get-all-account'));
 
       if (res.statusCode == 200) {
         return ResultResponse<bool>.fromJson(
@@ -21,39 +18,31 @@ class AuthServices {
           (body) => body as bool,
         );
       } else {
-        throw Exception('Failed to connect to server');
+        throw Exception('Failed to connect to server: ${res.body}');
       }
     } catch (e) {
-      throw Exception(e);
+      throw Exception('Connection error: $e');
     }
   }
 
-  Future<AccountModel> handleLogin(String email, String password) async {
+  Future<AccountModel?> handleLogin(String email, String password) async {
     try {
-      http.Response res = await http.post(
+      final res = await http.post(
         Uri.parse('$accountUri/login'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{
-          'email': email,
-          'password': password,
-        }),
+        headers: {'Content-Type': 'application/json; charset=UTF-8'},
+        body: jsonEncode({'email': email, 'password': password}),
       );
 
       if (res.statusCode == 200) {
-        final resultResponse = ResultResponse<AccountModel>.fromJson(
-          jsonDecode(res.body),
-          (body) => AccountModel.fromMap(body),
-        );
-
-        return resultResponse.body;
+        return AccountModel.fromMap(
+            jsonDecode(res.body)); 
       } else {
         final errorResponse = jsonDecode(res.body);
-        throw Exception(errorResponse['message'] ?? 'Login failed');
+        throw Exception(
+            'Login failed: ${errorResponse['message'] ?? 'Unknown error'}');
       }
     } catch (e) {
-      throw Exception('Error: $e');
+      throw Exception('Login error: $e');
     }
   }
 
@@ -62,14 +51,9 @@ class AuthServices {
     try {
       final response = await http.post(
         Uri.parse('$accountUri/register'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{
-          'userName': userName,
-          'email': email,
-          'password': password,
-        }),
+        headers: {'Content-Type': 'application/json; charset=UTF-8'},
+        body: jsonEncode(
+            {'userName': userName, 'email': email, 'password': password}),
       );
 
       if (response.statusCode == 200) {
@@ -78,16 +62,48 @@ class AuthServices {
           (body) => AccountModel.fromMap(body),
         );
 
-        await Storage().saveUserInfo(
-            email, resultResponse.body.avatarUrl, resultResponse.body.id, userName);
-
+        await Storage().saveUserInfo(email, resultResponse.body.avatarUrl,
+            resultResponse.body.id, userName);
         return resultResponse;
       } else {
         final errorResponse = jsonDecode(response.body);
-        throw Exception(errorResponse['message'] ?? 'Registration failed');
+        throw Exception(
+            'Registration failed: ${errorResponse['message'] ?? 'Unknown error'}');
       }
     } catch (e) {
-      throw Exception('Error: $e');
+      throw Exception('Registration error: $e');
+    }
+  }
+
+  Future<ResultResponse<bool>> handleLogout() async {
+    const secureStorage = FlutterSecureStorage();
+    String? email = await secureStorage.read(key: 'email');
+
+    try {
+      final res = await http.post(
+        Uri.parse('$accountUri/logout'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Account-Private-Token': '${email!}-USER',
+        },
+      );
+
+      if (res.statusCode == 200) {
+        final decodedResponse = jsonDecode(res.body);
+        final resultResponse = ResultResponse<bool>.fromJson(
+          decodedResponse,
+          (json) => json['body'] as bool,
+        );
+        // Clear user data
+        await Storage().deleteAllData();
+        return resultResponse;
+      } else {
+        final errorResponse = jsonDecode(res.body);
+        throw Exception(
+            'Logout failed: ${errorResponse['message'] ?? 'Unknown error'}');
+      }
+    } catch (e) {
+      throw Exception('Logout error: $e');
     }
   }
 }
