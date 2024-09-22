@@ -32,42 +32,48 @@ public class TripServiceImpl implements TripService {
     @Override
     public Trip createTrip(CreateTripRequest trip, String token) {
         Firestore dbFireStore = FirestoreClient.getFirestore();
-       try{
-           DocumentReference accountDocRef = dbFireStore.collection("accessToken").document(token);
-           ApiFuture<DocumentSnapshot> future = accountDocRef.get();
-           DocumentSnapshot checkToken = future.get();
+        try {
+            // Lấy document từ collection "accessToken" dựa trên token
+            DocumentReference accountDocRef = dbFireStore.collection("accessToken").document(token);
+            ApiFuture<DocumentSnapshot> future = accountDocRef.get();
+            DocumentSnapshot checkToken = future.get();
 
-           if(checkToken.exists()){
-               Account accountFromFireStore = checkToken.toObject(Account.class);
+            if (checkToken.exists()) {
+                // Chuyển đổi dữ liệu từ Firestore sang đối tượng Account
+                Account accountFromFireStore = checkToken.toObject(Account.class);
 
-               Trip savedTrip = new Trip();
-               savedTrip.setId(UUID.randomUUID().toString());
-               savedTrip.setDestinationId(trip.getDestinationId());
-               savedTrip.setStartDate(trip.getStartDate());
-               savedTrip.setEndDate(trip.getEndDate());
-               savedTrip.setStatus(Status.ACTIVE);
-               savedTrip.setCreatedAt(Instant.now());
-               savedTrip.setUpdatedAt(Instant.now());
-               savedTrip.setTotalBudget(trip.getTotalBudget());
-               savedTrip.setDestinationId(trip.getDestinationId());
-               savedTrip.setDescription(trip.getDescription());
+                // Tạo đối tượng Trip mới và set các thuộc tính từ CreateTripRequest
+                Trip savedTrip = new Trip();
+                savedTrip.setId(UUID.randomUUID().toString());
+                savedTrip.setName(trip.getName());  // Lấy tên từ CreateTripRequest
+                savedTrip.setStartDate(trip.getStartDate());  // Start date và end date phải khớp kiểu dữ liệu
+                savedTrip.setEndDate(trip.getEndDate());
+                savedTrip.setStatus(Status.ACTIVE);
+                savedTrip.setCreatedAt(Instant.now());
+                savedTrip.setUpdatedAt(Instant.now());
+                savedTrip.setTotalBudget(trip.getTotalBudget());  // Budget lấy từ CreateTripRequest
+                savedTrip.setDescription(trip.getDescription());  // Mô tả chuyến đi
+                savedTrip.setExpenses(trip.getExpenses());  // Set danh sách các chi phí từ Flutter
 
-               List<String> accounts = new ArrayList<>();
-               accounts.add(accountFromFireStore.getId());
-               savedTrip.setAccounts(accounts);
-               savedTrip.setCreatedBy(accountFromFireStore.getId());
+                // Danh sách tài khoản tham gia vào trip
+                List<String> accounts = new ArrayList<>();
+                accounts.add(accountFromFireStore.getId());
+                savedTrip.setAccounts(accounts);
+                savedTrip.setCreatedBy(accountFromFireStore.getId());
 
-               //Lưu vào FireStore
-               dbFireStore.collection("trips").document(savedTrip.getId()).set(savedTrip);
-               return savedTrip;
-           }else{
-               throw new RuntimeException("Token is invalid");
-           }
-       }catch(InterruptedException | ExecutionException e){
-           Thread.currentThread().interrupt();
-           throw new RuntimeException("Failed to retrieve account: " + e.getMessage(), e);
-       }
+                // Lưu đối tượng Trip vào Firestore
+                dbFireStore.collection("trips").document(savedTrip.getId()).set(savedTrip);
+
+                return savedTrip;
+            } else {
+                throw new RuntimeException("Token is invalid");
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Failed to retrieve account: " + e.getMessage(), e);
+        }
     }
+
 
     @Override
     public void deleteTrip() {

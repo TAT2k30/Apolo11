@@ -8,8 +8,8 @@ import lombok.experimental.SuperBuilder;
 
 import java.io.File;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,11 +23,14 @@ public class Trip {
     private Status status;
     private String description;
 
-    private File reportFile;
     private List<String> accounts;
     private String destinationId;
 
     private String createdBy;
     private Instant createdAt = Instant.now();
     private Instant updatedAt = Instant.now();
+
+    // Thêm danh sách các chi phí
+    private List<Expense> expenses = new ArrayList<>();
 }
+
