@@ -86,3 +86,8 @@ gradle-app.setting
 !gradle-wrapper.jar
 !gradle-wrapper.properties
 .gradletasknamecache
+!/app.log
+logs
+*.log.*
+*.log*
+*.
