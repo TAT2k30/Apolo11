@@ -14,3 +14,250 @@
 2024-09-21T13:45:51.477+07:00  INFO 13640 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2024-09-21T13:45:51.572+07:00  INFO 13640 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
 2024-09-21T13:45:51.609+07:00  INFO 13640 --- [restartedMain] com.project.apolo11.Apolo11Application   : Started Apolo11Application in 12.512 seconds (process running for 14.478)
+2024-09-23T17:50:03.253+07:00  INFO 38188 --- [restartedMain] com.project.apolo11.Apolo11Application   : Starting Apolo11Application using Java 22.0.2 with PID 38188 (/home/toannguyen/StudioProjects/Apolo11/TechWitz-API/target/classes started by toannguyen in /home/toannguyen/StudioProjects/Apolo11/TechWitz-API)
+2024-09-23T17:50:03.254+07:00  INFO 38188 --- [restartedMain] com.project.apolo11.Apolo11Application   : No active profile set, falling back to 1 default profile: "default"
+2024-09-23T17:50:03.287+07:00  INFO 38188 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-23T17:50:03.287+07:00  INFO 38188 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-23T17:50:03.724+07:00  INFO 38188 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-23T17:50:03.727+07:00  INFO 38188 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-23T17:50:03.757+07:00  INFO 38188 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2024-09-23T17:50:04.116+07:00  INFO 38188 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-23T17:50:04.123+07:00  INFO 38188 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-23T17:50:04.123+07:00  INFO 38188 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-09-23T17:50:04.145+07:00  INFO 38188 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-23T17:50:04.146+07:00  INFO 38188 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 859 ms
+2024-09-23T17:50:04.579+07:00  INFO 38188 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1599cbe0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1141bd15, org.springframework.security.web.context.SecurityContextHolderFilter@6432abb8, org.springframework.security.web.header.HeaderWriterFilter@9d78f2, org.springframework.web.filter.CorsFilter@20c0e77a, org.springframework.security.web.authentication.logout.LogoutFilter@4f27c657, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2d12c018, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@631200f7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@22c7cf5b, org.springframework.security.web.session.SessionManagementFilter@7255a6fe, org.springframework.security.web.access.ExceptionTranslationFilter@1698d9a3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4ea4809]
+2024-09-23T17:50:04.993+07:00  INFO 38188 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-23T17:50:05.004+07:00  INFO 38188 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-09-23T17:50:05.009+07:00  INFO 38188 --- [restartedMain] com.project.apolo11.Apolo11Application   : Started Apolo11Application in 1.943 seconds (process running for 2.284)
+2024-09-23T17:51:43.632+07:00  INFO 38695 --- [restartedMain] com.project.apolo11.Apolo11Application   : Starting Apolo11Application using Java 22.0.2 with PID 38695 (/home/toannguyen/StudioProjects/Apolo11/TechWitz-API/target/classes started by toannguyen in /home/toannguyen/StudioProjects/Apolo11/TechWitz-API)
+2024-09-23T17:51:43.633+07:00  INFO 38695 --- [restartedMain] com.project.apolo11.Apolo11Application   : No active profile set, falling back to 1 default profile: "default"
+2024-09-23T17:51:43.659+07:00  INFO 38695 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-23T17:51:43.659+07:00  INFO 38695 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-23T17:51:44.334+07:00  INFO 38695 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-23T17:51:44.336+07:00  INFO 38695 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-23T17:51:44.350+07:00  INFO 38695 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2024-09-23T17:51:44.589+07:00  INFO 38695 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-23T17:51:44.595+07:00  INFO 38695 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-23T17:51:44.595+07:00  INFO 38695 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-09-23T17:51:44.613+07:00  INFO 38695 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-23T17:51:44.613+07:00  INFO 38695 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 954 ms
+2024-09-23T17:51:44.865+07:00  INFO 38695 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@f44a57b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28273d8f, org.springframework.security.web.context.SecurityContextHolderFilter@232ee784, org.springframework.security.web.header.HeaderWriterFilter@3d4c03b2, org.springframework.web.filter.CorsFilter@6027358f, org.springframework.security.web.authentication.logout.LogoutFilter@3eb7ddb3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3d086ee5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31a87834, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1542f412, org.springframework.security.web.session.SessionManagementFilter@18a23ce, org.springframework.security.web.access.ExceptionTranslationFilter@518f5138, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2afacbca]
+2024-09-23T17:51:45.286+07:00  INFO 38695 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-23T17:51:45.298+07:00  INFO 38695 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-09-23T17:51:45.303+07:00  INFO 38695 --- [restartedMain] com.project.apolo11.Apolo11Application   : Started Apolo11Application in 1.941 seconds (process running for 2.466)
+2024-09-23T17:51:52.729+07:00  INFO 38695 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 69 class path changes (0 additions, 61 deletions, 8 modifications)
+2024-09-23T17:51:52.786+07:00  INFO 38695 --- [restartedMain] com.project.apolo11.Apolo11Application   : Starting Apolo11Application using Java 22.0.2 with PID 38695 (/home/toannguyen/StudioProjects/Apolo11/TechWitz-API/target/classes started by toannguyen in /home/toannguyen/StudioProjects/Apolo11/TechWitz-API)
+2024-09-23T17:51:52.786+07:00  INFO 38695 --- [restartedMain] com.project.apolo11.Apolo11Application   : No active profile set, falling back to 1 default profile: "default"
+2024-09-23T17:51:52.878+07:00  INFO 38695 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-23T17:51:52.878+07:00  INFO 38695 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-23T17:51:52.882+07:00  INFO 38695 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2024-09-23T17:51:52.923+07:00  INFO 38695 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-23T17:51:52.923+07:00  INFO 38695 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-23T17:51:52.923+07:00  INFO 38695 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-09-23T17:51:52.930+07:00  INFO 38695 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-23T17:51:52.930+07:00  INFO 38695 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 143 ms
+2024-09-23T17:51:53.044+07:00  INFO 38695 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@60cf33b5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@78933dbc, org.springframework.security.web.context.SecurityContextHolderFilter@45766090, org.springframework.security.web.header.HeaderWriterFilter@63be0b0b, org.springframework.web.filter.CorsFilter@49bfe35c, org.springframework.security.web.csrf.CsrfFilter@5ec4f010, org.springframework.security.web.authentication.logout.LogoutFilter@66c1285f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@24f238f2, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@62e348a9, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@13543a61, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2b7e29fb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c4b5c5e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7196e3c3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@a9ff125, org.springframework.security.web.access.ExceptionTranslationFilter@675548bc, org.springframework.security.web.access.intercept.AuthorizationFilter@74e24bc4]
+2024-09-23T17:51:53.053+07:00  INFO 38695 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-23T17:51:53.057+07:00  INFO 38695 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-09-23T17:51:53.059+07:00  INFO 38695 --- [restartedMain] com.project.apolo11.Apolo11Application   : Started Apolo11Application in 0.287 seconds (process running for 10.222)
+2024-09-23T17:51:53.061+07:00  INFO 38695 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   OAuth2ResourceServerJwtConfiguration.OAuth2SecurityFilterChainConfiguration matched:
+      - AllNestedConditions 2 matched 0 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) did not find any beans; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+
+   OAuth2ResourceServerOpaqueTokenConfiguration.OAuth2SecurityFilterChainConfiguration matched:
+      - AllNestedConditions 2 matched 0 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) did not find any beans; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+
+   SpringBootWebSecurityConfiguration.SecurityFilterChainConfiguration matched:
+      - AllNestedConditions 2 matched 0 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) did not find any beans; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+
+   SpringBootWebSecurityConfiguration.WebSecurityEnablerConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
+      - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+   OAuth2ResourceServerJwtConfiguration.OAuth2SecurityFilterChainConfiguration#jwtSecurityFilterChain:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.security.oauth2.jwt.JwtDecoder; SearchStrategy: all) did not find any beans of type org.springframework.security.oauth2.jwt.JwtDecoder (OnBeanCondition)
+
+   OAuth2ResourceServerOpaqueTokenConfiguration.OAuth2SecurityFilterChainConfiguration#opaqueTokenSecurityFilterChain:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector; SearchStrategy: all) did not find any beans of type org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector (OnBeanCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2024-09-23T17:51:54.466+07:00  INFO 38695 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 61 class path changes (61 additions, 0 deletions, 0 modifications)
+2024-09-23T17:51:54.689+07:00  INFO 38695 --- [restartedMain] com.project.apolo11.Apolo11Application   : Starting Apolo11Application using Java 22.0.2 with PID 38695 (/home/toannguyen/StudioProjects/Apolo11/TechWitz-API/target/classes started by toannguyen in /home/toannguyen/StudioProjects/Apolo11/TechWitz-API)
+2024-09-23T17:51:54.690+07:00  INFO 38695 --- [restartedMain] com.project.apolo11.Apolo11Application   : No active profile set, falling back to 1 default profile: "default"
+2024-09-23T17:51:54.902+07:00  INFO 38695 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-23T17:51:54.903+07:00  INFO 38695 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-23T17:51:54.904+07:00  INFO 38695 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-09-23T17:51:54.949+07:00  INFO 38695 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-23T17:51:54.950+07:00  INFO 38695 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-23T17:51:54.950+07:00  INFO 38695 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-09-23T17:51:54.955+07:00  INFO 38695 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-23T17:51:54.956+07:00  INFO 38695 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 262 ms
+2024-09-23T17:51:55.040+07:00  INFO 38695 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@66784660, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3ce6eb75, org.springframework.security.web.context.SecurityContextHolderFilter@3bbe4852, org.springframework.security.web.header.HeaderWriterFilter@210e25fd, org.springframework.web.filter.CorsFilter@11ae0329, org.springframework.security.web.authentication.logout.LogoutFilter@72db0dfa, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@748fa4a5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@247e5604, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@47e19527, org.springframework.security.web.session.SessionManagementFilter@1d504be5, org.springframework.security.web.access.ExceptionTranslationFilter@5a12bd95, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5370bd36]
+2024-09-23T17:51:55.104+07:00  INFO 38695 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-23T17:51:55.108+07:00  INFO 38695 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-09-23T17:51:55.110+07:00  INFO 38695 --- [restartedMain] com.project.apolo11.Apolo11Application   : Started Apolo11Application in 0.484 seconds (process running for 12.273)
+2024-09-23T17:51:55.111+07:00  INFO 38695 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+    None
+
+
+Negative matches:
+-----------------
+
+   OAuth2ResourceServerJwtConfiguration.OAuth2SecurityFilterChainConfiguration:
+      Did not match:
+         - AllNestedConditions 1 matched 1 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) found beans of type 'org.springframework.security.web.SecurityFilterChain' securityFilterChain; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+
+   OAuth2ResourceServerOpaqueTokenConfiguration.OAuth2SecurityFilterChainConfiguration:
+      Did not match:
+         - AllNestedConditions 1 matched 1 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) found beans of type 'org.springframework.security.web.SecurityFilterChain' securityFilterChain; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+
+   SpringBootWebSecurityConfiguration.SecurityFilterChainConfiguration:
+      Did not match:
+         - AllNestedConditions 1 matched 1 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) found beans of type 'org.springframework.security.web.SecurityFilterChain' securityFilterChain; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+
+   SpringBootWebSecurityConfiguration.WebSecurityEnablerConfiguration:
+      Did not match:
+         - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) found beans named springSecurityFilterChain (OnBeanCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2024-09-23T17:52:34.727+07:00  INFO 39092 --- [restartedMain] com.project.apolo11.Apolo11Application   : Starting Apolo11Application using Java 22.0.2 with PID 39092 (/home/toannguyen/StudioProjects/Apolo11/TechWitz-API/target/classes started by toannguyen in /home/toannguyen/StudioProjects/Apolo11/TechWitz-API)
+2024-09-23T17:52:34.729+07:00  INFO 39092 --- [restartedMain] com.project.apolo11.Apolo11Application   : No active profile set, falling back to 1 default profile: "default"
+2024-09-23T17:52:34.761+07:00  INFO 39092 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-23T17:52:34.762+07:00  INFO 39092 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-23T17:52:35.208+07:00  INFO 39092 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-23T17:52:35.209+07:00  INFO 39092 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-23T17:52:35.222+07:00  INFO 39092 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-09-23T17:52:35.851+07:00  INFO 39092 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-23T17:52:35.856+07:00  INFO 39092 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-23T17:52:35.857+07:00  INFO 39092 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-09-23T17:52:35.875+07:00  INFO 39092 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-23T17:52:35.875+07:00  INFO 39092 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1113 ms
+2024-09-23T17:52:36.136+07:00  INFO 39092 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@32afa553, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67e0ed48, org.springframework.security.web.context.SecurityContextHolderFilter@44a46512, org.springframework.security.web.header.HeaderWriterFilter@521179f, org.springframework.web.filter.CorsFilter@4934d885, org.springframework.security.web.authentication.logout.LogoutFilter@17557de9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@11c9e7a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2ac24f88, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@650840dd, org.springframework.security.web.session.SessionManagementFilter@5fafc482, org.springframework.security.web.access.ExceptionTranslationFilter@4d225bc5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4973d3d2]
+2024-09-23T17:52:36.938+07:00  INFO 39092 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-23T17:52:36.948+07:00  INFO 39092 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-09-23T17:52:36.953+07:00  INFO 39092 --- [restartedMain] com.project.apolo11.Apolo11Application   : Started Apolo11Application in 2.687 seconds (process running for 3.538)
+2024-09-23T17:52:56.262+07:00  INFO 39092 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-23T17:52:56.263+07:00  INFO 39092 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-23T17:52:56.267+07:00  INFO 39092 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2024-09-23T17:53:46.565+07:00  INFO 39568 --- [restartedMain] com.project.apolo11.Apolo11Application   : Starting Apolo11Application using Java 22.0.2 with PID 39568 (/home/toannguyen/StudioProjects/Apolo11/TechWitz-API/target/classes started by toannguyen in /home/toannguyen/StudioProjects/Apolo11/TechWitz-API)
+2024-09-23T17:53:46.566+07:00  INFO 39568 --- [restartedMain] com.project.apolo11.Apolo11Application   : No active profile set, falling back to 1 default profile: "default"
+2024-09-23T17:53:46.593+07:00  INFO 39568 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-23T17:53:46.594+07:00  INFO 39568 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-23T17:53:47.733+07:00  INFO 39568 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-23T17:53:47.734+07:00  INFO 39568 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-23T17:53:47.747+07:00  INFO 39568 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-09-23T17:53:47.974+07:00  INFO 39568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-23T17:53:47.979+07:00  INFO 39568 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-23T17:53:47.979+07:00  INFO 39568 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-09-23T17:53:47.998+07:00  INFO 39568 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-23T17:53:47.998+07:00  INFO 39568 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1404 ms
+2024-09-23T17:53:48.677+07:00  INFO 39568 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-09-23T17:53:48.711+07:00  INFO 39568 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1d075880, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@f76fe76, org.springframework.security.web.context.SecurityContextHolderFilter@6baf773c, org.springframework.security.web.header.HeaderWriterFilter@696b429c, org.springframework.web.filter.CorsFilter@47e1b6e1, org.springframework.security.web.authentication.logout.LogoutFilter@294250d3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2c044451, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@45a14eb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5c989c5e, org.springframework.security.web.session.SessionManagementFilter@5f6e2930, org.springframework.security.web.access.ExceptionTranslationFilter@782ee9f7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6748b12]
+2024-09-23T17:53:49.724+07:00  INFO 39568 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-23T17:53:49.744+07:00  INFO 39568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-09-23T17:53:49.751+07:00  INFO 39568 --- [restartedMain] com.project.apolo11.Apolo11Application   : Started Apolo11Application in 3.339 seconds (process running for 3.757)
+2024-09-23T17:53:50.429+07:00  INFO 39568 --- [RMI TCP Connection(1)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-23T17:53:50.429+07:00  INFO 39568 --- [RMI TCP Connection(1)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-23T17:53:50.431+07:00  INFO 39568 --- [RMI TCP Connection(1)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-09-23T17:53:54.440+07:00  WARN 39568 --- [boundedElastic-1] o.s.b.a.d.r.RedisReactiveHealthIndicator : Redis health check failed
+
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1847) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1778) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1580) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.lambda$getConnection$0(LettuceConnectionFactory.java:1560) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.doInLock(LettuceConnectionFactory.java:1521) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1557) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedReactiveConnection(LettuceConnectionFactory.java:1268) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getReactiveConnection(LettuceConnectionFactory.java:1143) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getReactiveConnection(LettuceConnectionFactory.java:119) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	at reactor.core.publisher.MonoSupplier.call(MonoSupplier.java:67) ~[reactor-core-3.6.6.jar:3.6.6]
+	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228) ~[reactor-core-3.6.6.jar:3.6.6]
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68) ~[reactor-core-3.6.6.jar:3.6.6]
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28) ~[reactor-core-3.6.6.jar:3.6.6]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78) ~[lettuce-core-6.3.2.RELEASE.jar:6.3.2.RELEASE/8941aea]
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56) ~[lettuce-core-6.3.2.RELEASE.jar:6.3.2.RELEASE/8941aea]
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:350) ~[lettuce-core-6.3.2.RELEASE.jar:6.3.2.RELEASE/8941aea]
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:215) ~[lettuce-core-6.3.2.RELEASE.jar:6.3.2.RELEASE/8941aea]
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:112) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[na:na]
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:112) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1776) ~[spring-data-redis-3.3.0.jar:3.3.0]
+	... 16 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Connection refused: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: finishConnect(..) failed: Connection refused
+	at io.netty.channel.unix.Errors.newConnectException0(Errors.java:166) ~[netty-transport-native-unix-common-4.1.110.Final.jar:4.1.110.Final]
+	at io.netty.channel.unix.Errors.handleConnectErrno(Errors.java:131) ~[netty-transport-native-unix-common-4.1.110.Final.jar:4.1.110.Final]
+	at io.netty.channel.unix.Socket.finishConnect(Socket.java:359) ~[netty-transport-native-unix-common-4.1.110.Final.jar:4.1.110.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.doFinishConnect(AbstractEpollChannel.java:715) ~[netty-transport-classes-epoll-4.1.110.Final.jar:4.1.110.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.finishConnect(AbstractEpollChannel.java:692) ~[netty-transport-classes-epoll-4.1.110.Final.jar:4.1.110.Final]
+	at io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.epollOutReady(AbstractEpollChannel.java:567) ~[netty-transport-classes-epoll-4.1.110.Final.jar:4.1.110.Final]
+	at io.netty.channel.epoll.EpollEventLoop.processReady(EpollEventLoop.java:491) ~[netty-transport-classes-epoll-4.1.110.Final.jar:4.1.110.Final]
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:399) ~[netty-transport-classes-epoll-4.1.110.Final.jar:4.1.110.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994) ~[netty-common-4.1.110.Final.jar:4.1.110.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.110.Final.jar:4.1.110.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.110.Final.jar:4.1.110.Final]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2024-09-23T17:54:03.736+07:00  INFO 39568 --- [http-nio-8080-exec-10] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 306 ms

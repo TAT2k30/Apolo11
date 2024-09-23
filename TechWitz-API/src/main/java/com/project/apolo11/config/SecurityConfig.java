@@ -43,9 +43,14 @@ public class SecurityConfig {
                         "/api/v1/account/create-account",
                         "/api/v1/account/logout",            //Logout account api
                         "/api/v1/admin/create-account",
-                        "/api/v1/account/update-account" ,     //Update Account Api
+                        "/api/v1/account/update-account",     //Update Account Api
                         "/api/v1/account/get-all-account"
                 ).permitAll()
+                .requestMatchers(
+                        "/v3/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement(sessionManagement ->
